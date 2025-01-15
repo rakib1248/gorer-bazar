@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { Bounce, toast } from "react-toastify";
 
 const Cashout = () => {
   const { phurches } = useSelector((state) => state.Auth);
@@ -9,6 +10,19 @@ const Cashout = () => {
     return phurches
       .reduce((total, item) => total + Number(item.price), 0)
       .toFixed(2);
+  };
+  const handleClick = () => {
+    toast.success("Just a Practice Project", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
   };
 
   return (
@@ -78,7 +92,9 @@ const Cashout = () => {
               </div>
 
               <NavLink>
-                <button className="w-full bg-blue-600 text-white py-2 rounded-lg mt-4 hover:bg-blue-700 transition-colors">
+                <button
+                  onClick={handleClick}
+                  className="w-full bg-blue-600 text-white py-2 rounded-lg mt-4 hover:bg-blue-700 transition-colors">
                   Pay Now
                 </button>
               </NavLink>
