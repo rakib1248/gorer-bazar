@@ -68,32 +68,32 @@ const Header = () => {
                   isTigglled ? "block" : "hidden"
                 }  md:block shadow md:shadow-none right-0 top-5 md:w-auto md:h-auto md:static`}>
                 <ul className="flex flex-col md:flex-row items-end gap-2 md:items-center mr-4 md:mr-0 space-x-4">
-                  <li>
+                  <li onClick={toggle}>
                     <NavLink to="/" className="text-[#FC8934]">
                       হোম
                     </NavLink>
                   </li>
-                  <li>
+                  <li onClick={toggle}>
                     <NavLink to="/shop" className="text-[#FC8934]">
                       পণ্য
                     </NavLink>
                   </li>
-                  <li>
+                  <li onClick={toggle}>
                     <NavLink to="/about" className="text-[#FC8934]">
                       সম্পর্কে
                     </NavLink>
                   </li>
-                  <li>
+                  <li onClick={toggle}>
                     <NavLink to="/contact" className="text-[#FC8934]">
                       যোগাযোগ
                     </NavLink>
                   </li>
-                  <li>
+                  <li onClick={toggle}>
                     <NavLink to="/admin-logine" className="text-[#FC8934]">
                       এডমিন ড্যাশবোর্ড
                     </NavLink>
                   </li>
-                  <li>
+                  <li onClick={toggle}>
                     <NavLink
                       onClick={HandleLogout}
                       to={isAuthenticated ? "/" : "/logine"}
