@@ -10,7 +10,7 @@ const adminSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(AdminLoginesuccess.fulfilled, (state, action) => {
       state.user = action.payload;
-      state.adminAuthenticated = true;
+      state.adminAuthenticated = false;
     });
   },
 });
