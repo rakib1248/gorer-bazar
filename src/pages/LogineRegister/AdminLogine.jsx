@@ -1,6 +1,8 @@
 import { useDispatch } from "react-redux";
 import useInput from "../../hooks/useInput";
 import { AdminLoginesuccess } from "../../app/features/admin/adminApiSlice";
+import { Bounce, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const { input, setInput, handleInputChange } = useInput({
@@ -8,11 +10,25 @@ const LoginPage = () => {
     password: "",
   });
   const Dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
+    toast.error("🦄 Sorry This Page access only for admin!", {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+
     Dispatch(AdminLoginesuccess(input));
     setInput({ email: "", password: "" });
+    navigate("/logine");
   };
 
   return (

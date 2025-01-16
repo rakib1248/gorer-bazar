@@ -74,7 +74,7 @@ const Header = () => {
                     </NavLink>
                   </li>
                   <li onClick={toggle}>
-                    <NavLink to="/shop" className="text-[#FC8934]">
+                    <NavLink to="/" className="text-[#FC8934]">
                       পণ্য
                     </NavLink>
                   </li>
