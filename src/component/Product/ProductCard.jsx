@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
         // If product exists, remove it from the cart
         dispatch(removeFromCart(id));
         toast.info("🦄 Item Remove to Card!", {
-          position: "top-center",
+          position: "bottom-center",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: false,
@@ -32,7 +32,7 @@ const ProductCard = ({ product }) => {
         // If product doesn't exist, add it to the cart
         dispatch(phurchesUser(id));
         toast.success("🦄 Item Sucessfully Add to card", {
-          position: "top-center",
+          position: "bottom-center",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: false,

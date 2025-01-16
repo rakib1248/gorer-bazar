@@ -13,7 +13,7 @@ const Cashout = () => {
   };
   const handleClick = () => {
     toast.success("Just a Practice Project", {
-      position: "top-center",
+      position: "bottom-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: false,
