@@ -3,10 +3,47 @@ import { FaRegTrashCan } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { removeFromCart } from "../../app/features/userAuth/userAuthSlice";
+import Swal from "sweetalert2";
 
 const AddToCartPage = () => {
   const { phurches } = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
+  const handleremoveFromCart = (id) => {
+    const swalWithCustomButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "custom-confirm-button",
+        cancelButton: "custom-cancel-button",
+      },
+      buttonsStyling: false, // Disable default SweetAlert2 button styles
+    });
+
+    swalWithCustomButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swalWithCustomButtons.fire(
+            "Deleted!",
+            "Your file has been deleted.",
+            "success"
+          );
+          dispatch(removeFromCart(id));
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithCustomButtons.fire(
+            "Cancelled",
+            "Your imaginary file is safe :)",
+            "error"
+          );
+        }
+      });
+  };
   const [cart, setCart] = useState([]);
   useEffect(() => {
     if (phurches && Array.isArray(phurches)) {
@@ -68,7 +105,7 @@ const AddToCartPage = () => {
               <div className="flex items-center gap-2 mt-5 sm:mt-0">
                 <button
                   className="text-red-500 text-2xl"
-                  onClick={() => dispatch(removeFromCart(item.id))}>
+                  onClick={() => handleremoveFromCart(item.id)}>
                   <FaRegTrashCan />
                 </button>
                 <button
