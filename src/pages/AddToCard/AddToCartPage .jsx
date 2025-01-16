@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { FaRegTrashCan } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { removeFromCart } from "../../app/features/userAuth/userAuthSlice";
 
 const AddToCartPage = () => {
   const { phurches } = useSelector((state) => state.Auth);
+  const dispatch = useDispatch();
   const [cart, setCart] = useState([]);
   useEffect(() => {
     if (phurches && Array.isArray(phurches)) {
@@ -50,7 +53,7 @@ const AddToCartPage = () => {
           {cart.map((item) => (
             <div
               key={item.id}
-              className="flex items-center justify-between p-4 border-b">
+              className="flex flex-col sm:flex-row items-center justify-between p-4 border-b">
               <div className="flex items-center gap-4">
                 <img
                   src={item.image}
@@ -62,7 +65,12 @@ const AddToCartPage = () => {
                   <p className="text-gray-500">${item.price.toFixed(2)}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 mt-5 sm:mt-0">
+                <button
+                  className="text-red-500 text-2xl"
+                  onClick={() => dispatch(removeFromCart(item.id))}>
+                  <FaRegTrashCan />
+                </button>
                 <button
                   className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
                   onClick={() => updateQuantity(item.id, -1)}>
